@@ -35,6 +35,7 @@ google-services.json
 
 # Android Profiling
 *.hprof
+.vscode
 
 ### Android Patch ###
 gen-external-apklibs
