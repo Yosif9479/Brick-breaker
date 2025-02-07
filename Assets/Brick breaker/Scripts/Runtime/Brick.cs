@@ -7,7 +7,7 @@ namespace Runtime
 	[RequireComponent(typeof(Collider2D))]
 	public class Brick : MonoBehaviour, IDamagable
 	{
-		
+		[SerializeField] private Color[] _colorSet;
 		[SerializeField] private int _health = 1;
 		
 		private ParticleSystem _particleSystem;
@@ -22,8 +22,18 @@ namespace Runtime
 			_spriteRenderer = GetComponent<SpriteRenderer>();
 			_collider = GetComponent<Collider2D>();
 
-			var particleModule = _particleSystem.main;
+			InitColor();
+		}
+
+		private void InitColor()
+		{
+			if (_colorSet.Length >= 1)
+			{
+				int index = Random.Range(0, _colorSet.Length);
+				_spriteRenderer.color = _colorSet[index];
+			}
 			
+			var particleModule = _particleSystem.main;
 			particleModule.startColor = _spriteRenderer.color;
 		}
 		
